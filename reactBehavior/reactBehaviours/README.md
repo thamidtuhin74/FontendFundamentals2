@@ -1,30 +1,11 @@
-# React + TypeScript + Vite
+# React Fundamentals
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## StrictMode - [Details](https://react.dev/reference/react/StrictMode)
 
-Currently, two official plugins are available:
+- Strict mode is a set of ```development tools``` that help you ```catch potential problems in your code before they become actual bugs```. When you enable strictmode in your React application, you're essentially telling React to turn on a bunch of extra checks and warnings that are designed to help you write better code. 
+- Strict Mode calls some of your functions (only the ones that should be pure) twice in development. This includes:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-- Your component function body (only top-level logic, so this doesn’t include code inside event handlers)
+-- Functions that you pass to useState, set functions, useMemo, or useReducer
+-- Some class component methods like constructor, render,shouldComponentUpdate ([see the whole list](https://legacy.reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects))
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
