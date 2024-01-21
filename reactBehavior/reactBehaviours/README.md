@@ -11,3 +11,45 @@
 
 ## useState 
 
+## lifting state up : [read more](https://react.dev/learn/sharing-state-between-components)
+
+- Sometimes, you want the state of two components to always change together. To do it, remove state from both of them, move it to their closest common parent, and then pass it down to them via props. This is known as lifting state up, and it’s one of the most common things you will do writing React code.
+app.tsx
+```
+  function App() {
+    // const [count, setCount] = useState(0);
+    const [counter, setCounter] = useState(0);
+
+    console.log('React Fundamentals')
+    return (
+      <>
+        <h1>React Fundamentals</h1>
+        <UseStateExample counter={counter} setCounter={setCounter}/>
+      </>
+    )
+  }
+```
+
+```
+import { Dispatch } from "react";
+type Tcounter = {
+    counter: number;
+    setCounter: Dispatch<React.SetStateAction<number>>;
+}
+// lifting state up | 
+
+const UseStateExample = ({counter,setCounter}:Tcounter)=>{
+
+  // move state from there.
+    return(
+        <div>
+            <h3>Counter : {counter}</h3>
+            <button onClick={()=>setCounter((prevState)=>prevState+1)}>Increment</button>
+            <button onClick={()=>setCounter((prevState)=>prevState-1)}>Decrement</button>
+            <button onClick={()=>setCounter(0)}>Reset</button>
+
+        </div>
+    )
+}
+
+```
